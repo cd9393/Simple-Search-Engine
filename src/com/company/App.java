@@ -1,22 +1,20 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
-Scanner scanner;
+    public Scanner scanner;
+    private Menu menu;
+
     public App() {
         scanner = new Scanner(System.in);
+        menu = new Menu(scanner);
     }
 
     public void run() {
         int size = askUserForArraySize();
         String[] dataset = buildDataset(size);
-        int queryCount = getSearchQueryCount();
-        for (int i = 0; i < queryCount; i++) {
-            searchDataset(dataset);
-        }
+        this.menu.run(dataset);
     }
 
     public int askUserForArraySize() {
@@ -34,37 +32,4 @@ Scanner scanner;
         return dataset;
     }
 
-    public int getSearchQueryCount() {
-        System.out.println("Enter the number of search queries:");
-        int queryCount = Integer.parseInt(scanner.nextLine());
-        return queryCount;
-    }
-
-    public void searchDataset(String[] dataset) {
-        String searchQuery = getSearchQuery();
-        List<String> results = new ArrayList<>();
-        for (String item : dataset) {
-            if (item.toLowerCase().contains(searchQuery.toLowerCase())) {
-                results.add(item);
-            }
-        }
-        outPutSearchResults(results);
-    }
-
-    public String getSearchQuery() {
-        System.out.println("Enter data to search people:");
-        String searchTerm = scanner.nextLine();
-        return searchTerm;
-    }
-
-    public void outPutSearchResults(List<String> results) {
-        if (results.size() == 0) {
-            System.out.println("No matching people found.");
-        } else {
-            System.out.println("Found people:");
-            for(String person : results) {
-                System.out.println(person);
-            }
-        }
-    }
 }
