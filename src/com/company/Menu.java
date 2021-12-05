@@ -11,7 +11,7 @@ public class Menu {
         this.scanner = scanner;
     }
 
-    public void run(String[] dataset) {
+    public void run(List<String> dataset) {
         boolean isRunning = true;
 
         while(isRunning) {
@@ -36,13 +36,13 @@ public class Menu {
         }
     }
 
-    private void printAllPeople(String[] dataset) {
+    private void printAllPeople(List<String> dataset) {
         for (String person : dataset) {
             System.out.println(person);
         }
     }
 
-    public void findPerson(String[] dataset) {
+    public void findPerson(List<String> dataset) {
         String searchQuery = getSearchQuery();
         List<String> results = new ArrayList<>();
         for (String item : dataset) {
