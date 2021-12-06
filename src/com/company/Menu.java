@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,7 +12,7 @@ public class Menu {
         this.scanner = scanner;
     }
 
-    public void run(List<String> dataset) {
+    public void run(List<String> dataset, Map<String, List<Integer>> invertedIndex) {
         boolean isRunning = true;
 
         while(isRunning) {
@@ -19,7 +20,7 @@ public class Menu {
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    findPerson(dataset);
+                    findPerson(dataset, invertedIndex);
                     break;
                 case 2:
                     printAllPeople(dataset);
@@ -42,12 +43,12 @@ public class Menu {
         }
     }
 
-    public void findPerson(List<String> dataset) {
+    public void findPerson(List<String> dataset,Map<String, List<Integer>> invertedIndex ) {
         String searchQuery = getSearchQuery();
         List<String> results = new ArrayList<>();
-        for (String item : dataset) {
-            if (item.toLowerCase().contains(searchQuery.toLowerCase())) {
-                results.add(item);
+        if (invertedIndex.containsKey(searchQuery)) {
+            for (int lineNumber : invertedIndex.get(searchQuery)) {
+                results.add(dataset.get(lineNumber));
             }
         }
         outPutSearchResults(results);

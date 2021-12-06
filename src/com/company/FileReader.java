@@ -2,9 +2,7 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileReader {
     private File file;
@@ -23,5 +21,34 @@ public class FileReader {
             System.out.println("No file found:");
         }
         return contacts;
+    }
+
+    public Map<String, List<Integer>> buildInvertedIndex(List<String> contacts) {
+        Map<String, List<Integer>> invertedIndexMap = new HashMap<>();
+        String[] allWordsInFile = getAllWordsInFile(contacts);
+        for (String word : allWordsInFile) {
+            List<Integer> indexes = findLinesWhichContainString(contacts, word);
+            invertedIndexMap.put(word,indexes);
+        }
+        return invertedIndexMap;
+    }
+
+    private String[] getAllWordsInFile(List<String> contacts) {
+        StringBuilder allContacts = new StringBuilder();
+        for (String contact : contacts) {
+            allContacts.append(contact);
+            allContacts.append(" ");
+        }
+        return allContacts.toString().split(" ");
+    }
+
+    private List<Integer> findLinesWhichContainString(List<String> contacts,String searchTerm) {
+        List<Integer> indexes = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).toLowerCase().contains(searchTerm.toLowerCase())) {
+                indexes.add(i);
+            }
+        }
+        return indexes;
     }
 }
