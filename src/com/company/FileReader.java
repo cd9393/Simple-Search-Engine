@@ -15,7 +15,7 @@ public class FileReader {
         List<String> contacts = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
-                contacts.add(scanner.nextLine());
+                contacts.add(scanner.nextLine().toLowerCase());
             }
         } catch (FileNotFoundException e) {
             System.out.println("No file found:");
