@@ -3,7 +3,6 @@ package com.company;
 import com.company.Strategy.All;
 import com.company.Strategy.Any;
 import com.company.Strategy.None;
-import com.company.Strategy.SearchStrategy;
 
 import java.util.*;
 
@@ -40,6 +39,7 @@ public class Menu {
     }
 
     private void printAllPeople(List<String> dataset) {
+        System.out.println();
         for (String person : dataset) {
             System.out.println(person);
         }
@@ -72,8 +72,9 @@ public class Menu {
     }
 
     private String getStrategy() {
+        System.out.println();
         System.out.println("Select a matching strategy: ALL, ANY, NONE");
-        String strategy = scanner.nextLine().toLowerCase();
+        String strategy = scanner.nextLine();
         return strategy;
     }
 
@@ -86,7 +87,7 @@ public class Menu {
 
     public void outPutSearchResults(List<String> results) {
         System.out.println();
-        System.out.println("=== List of people ===");
+        System.out.println(results.size() + " persons found:");
         if (results.size() == 0) {
             System.out.println("No matching people found.");
         } else {

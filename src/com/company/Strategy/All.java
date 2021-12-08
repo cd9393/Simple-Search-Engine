@@ -12,11 +12,11 @@ public class All implements SearchStrategy {
         String[] words = searchTerm.split(" ");
         Set<Integer> results = new HashSet<>();
         for (String word : words) {
-            if (invertedIndex.get(word) != null) {
+            if (invertedIndex.get(word.toLowerCase()) != null) {
                 if (results.isEmpty()) {
-                    results.addAll(invertedIndex.get(word));
+                    results.addAll(invertedIndex.get(word.toLowerCase()));
                 } else {
-                    results.retainAll(invertedIndex.get(word));
+                    results.retainAll(invertedIndex.get(word.toLowerCase()));
                 }
             }
         }

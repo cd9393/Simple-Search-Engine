@@ -6,7 +6,7 @@ public class None implements SearchStrategy {
 
     @Override
     public Set<Integer> search(Map<String, List<Integer>> invertedIndex, String searchTerm) {
-        List<String> words = Arrays.stream(searchTerm.split(" ")).toList();
+        List<String> words = new ArrayList<>(Arrays.asList(searchTerm.toLowerCase().split(" ")));
         Set<Integer> setForMissingElements = new HashSet<>();
         Set<Integer> setForPresentedElements = new HashSet<>();
 

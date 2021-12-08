@@ -15,7 +15,7 @@ public class FileReader {
         List<String> contacts = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
-                contacts.add(scanner.nextLine().toLowerCase());
+                contacts.add(scanner.nextLine());
             }
         } catch (FileNotFoundException e) {
             System.out.println("No file found:");
@@ -36,7 +36,7 @@ public class FileReader {
     private String[] getAllWordsInFile(List<String> contacts) {
         StringBuilder allContacts = new StringBuilder();
         for (String contact : contacts) {
-            allContacts.append(contact);
+            allContacts.append(contact.toLowerCase());
             allContacts.append(" ");
         }
         return allContacts.toString().split(" ");
